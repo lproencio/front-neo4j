@@ -1,0 +1,7 @@
+.nav {
+  @apply w-full p-2 flex justify-center;
+
+  & a {
+    @apply text-lg font-bold mx-2 text-gray-500;
+  }
+}
