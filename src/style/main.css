@@ -10,7 +10,7 @@ button {
   outline: none;
 }
 
-.app {
+#app {
   @apply bg-black;
 }
 
