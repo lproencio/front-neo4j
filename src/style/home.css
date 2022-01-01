@@ -6,6 +6,26 @@
       @apply my-4;
     }
   }
+
+  & .VuePagination {
+    & nav {
+      & ul {
+        @apply flex justify-between px-8;
+
+        & li {
+          @apply bg-white rounded p-2;
+        }
+
+        & .active {
+          @apply bg-green-200;
+        }
+
+        & .disabled {
+          @apply bg-gray-500;
+        }
+      }
+    }
+  }
 }
 
 @import "./components/card-user.css";
