@@ -1,0 +1,6 @@
+.avatar {
+  @apply rounded-full text-lg flex justify-center items-center font-bold;
+
+  width: 50px;
+  height: 50px;
+}

@@ -12,6 +12,10 @@ button {
 
 #app {
   @apply bg-black;
+  min-height: 100vh;
 }
 
 @import "./nav.css";
+@import "./home.css";
+
+@import "./components/avatar.css";

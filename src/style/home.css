@@ -1,0 +1,11 @@
+.home {
+  & .table {
+    @apply p-6 w-full;
+
+    & li {
+      @apply my-4;
+    }
+  }
+}
+
+@import "./components/card-user.css";
