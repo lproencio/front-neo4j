@@ -8,4 +8,8 @@ export default {
   post(user) {
     return Api.post("/user", { user });
   },
+
+  update(id, user) {
+    return Api.put(`/users/${id}`, { user });
+  },
 };

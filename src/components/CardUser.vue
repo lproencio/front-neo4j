@@ -1,8 +1,15 @@
 <template>
   <div class="card-user">
     <div class="name">
-      <avatar :name="user.name" />
-      <p>{{ user.name }}</p>
+      <div class="infos-avatar">
+        <avatar :name="user.name" />
+        <p>{{ user.name }}</p>
+      </div>
+      <img
+        :src="require('@/assets/botao-editar.png')"
+        alt=""
+        @click="$emit('edit', user)"
+      />
     </div>
     <div class="infos">
       <div class="list">

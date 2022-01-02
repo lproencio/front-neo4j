@@ -1,13 +1,13 @@
 <template>
   <div class="home">
-    <button class="button-register" @click="show_add = !show_add">
+    <button class="button-register" @click="new_register">
       <img :src="require('@/assets/add.png')" alt="" />
       New Register
     </button>
     <div v-if="user_all.length > 0">
       <ul class="table">
         <li v-for="user in user_all" :key="user.id">
-          <CardUser :user="user" />
+          <CardUser :user="user" @edit="open_edit" />
         </li>
         <div class="updated" v-if="updated_search">
           <Loader />
@@ -27,6 +27,7 @@
     </div>
 
     <add-edit
+      :user="user_select"
       v-if="show_add"
       @close="show_add = !show_add"
       @update="change_page(1)"
@@ -51,6 +52,7 @@ export default {
 
   setup() {
     const user_all = ref([]);
+    const user_select = ref({});
 
     const updated_search = ref(false);
     const show_add = ref(false);
@@ -79,6 +81,18 @@ export default {
       get_users();
     });
 
+    const new_register = () => {
+      user_select.value = {};
+
+      show_add.value = !show_add.value;
+    };
+
+    const open_edit = (user) => {
+      user_select.value = user;
+
+      show_add.value = !show_add.value;
+    };
+
     return {
       user_all,
       change_page,
@@ -87,6 +101,9 @@ export default {
       page,
       updated_search,
       show_add,
+      open_edit,
+      user_select,
+      new_register,
     };
   },
 };

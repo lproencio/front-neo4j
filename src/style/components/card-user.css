@@ -2,10 +2,19 @@
   @apply bg-white rounded-lg p-4;
 
   & .name {
-    @apply flex items-center;
+    @apply flex justify-between items-center mr-1;
 
-    & p {
-      @apply ml-4 font-bold text-lg;
+    & .infos-avatar {
+      @apply flex items-center;
+
+      & p {
+        @apply ml-4 font-bold text-lg;
+      }
+    }
+
+    & img {
+      width: 20px;
+      height: 20px;
     }
   }
 

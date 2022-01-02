@@ -1,7 +1,7 @@
 <template>
   <div class="add-edit">
     <div class="content">
-      <h1>{{ title }}</h1>
+      <h1>{{ user.id ? "Edit" : "New User" }}</h1>
 
       <div v-for="(user, i) in user_info" :key="i">
         <Switch
@@ -20,7 +20,7 @@
       </div>
 
       <div class="buttons">
-        <button class="save" @click="create">salvar</button>
+        <button class="save" @click="save">salvar</button>
         <button class="delete" @click="create">delete</button>
         <button class="close" @click="$emit('close')">x</button>
       </div>
@@ -47,34 +47,39 @@ import CardAlert from "./CardAlert.vue";
 
 export default {
   components: { Input, Switch, Loader, CardAlert },
-  props: { user: Object, title: { type: String, default: "create" } },
-  setup(_, { emit }) {
+  props: { user: Object },
+  setup(props, { emit }) {
     const user_info = ref([
       {
         type: "text",
         label: "Name",
-        value: "",
+        value: props.user.name,
         placeholder: "Insira o nome aqui",
       },
       {
         type: "cpf",
         label: "CPF",
-        value: "",
+        value: props.user.cpf,
         placeholder: "Insira o CPF aqui",
       },
       {
         type: "email",
         label: "Email",
-        value: "",
+        value: props.user.email,
         placeholder: "example@example.com",
       },
       {
         type: "phone",
-        label: "phone",
-        value: "",
+        label: "Phone",
+        value: props.user.phone,
         placeholder: "ex. (99) 9 9999-9999",
       },
-      { type: "is_active", label: "Active", value: true, placeholder: "" },
+      {
+        type: "is_active",
+        label: "Active",
+        value: props.user.is_active,
+        placeholder: "",
+      },
     ]);
 
     const show_alert = ref(false);
@@ -82,17 +87,7 @@ export default {
     const title_alert = ref("");
     const body = ref("");
 
-    const create = async () => {
-      const new_user = {
-        name: user_info.value[0].value,
-        cpf: user_info.value[1].value,
-        email: user_info.value[2].value,
-        phone: user_info.value[3].value,
-        is_active: user_info.value[4].value,
-      };
-
-      is_loading.value = !is_loading.value;
-
+    const save_user = async (new_user) => {
       await Users.post(new_user)
         .then((res) => {
           title_alert.value = "Success!!!";
@@ -119,7 +114,52 @@ export default {
         });
     };
 
-    return { user_info, create, show_alert, is_loading, title_alert, body };
+    const update_user = async (id, user) => {
+      await Users.update(id, user)
+        .then((res) => {
+          title_alert.value = "Success!!!";
+          body.value = "Saved successfully";
+          is_loading.value = !is_loading.value;
+          show_alert.value = !show_alert.value;
+
+          emit("update");
+
+          setTimeout(() => {
+            show_alert.value = !show_alert.value;
+
+            emit("close");
+          }, 800);
+
+          return res;
+        })
+        .catch((err) => {
+          title_alert.value = "Error";
+          body.value = "an error occurred, check the fields and try again";
+          is_loading.value = !is_loading.value;
+          show_alert.value = !show_alert.value;
+          return err;
+        });
+    };
+
+    const save = async () => {
+      const new_user = {
+        name: user_info.value[0].value,
+        cpf: user_info.value[1].value,
+        email: user_info.value[2].value,
+        phone: user_info.value[3].value,
+        is_active: user_info.value[4].value,
+      };
+
+      is_loading.value = !is_loading.value;
+
+      if (props.user.id) {
+        update_user(props.user._id, new_user);
+      } else {
+        save_user(new_user);
+      }
+    };
+
+    return { user_info, save, show_alert, is_loading, title_alert, body };
   },
 };
 </script>
