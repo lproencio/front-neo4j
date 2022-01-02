@@ -21,12 +21,14 @@
 
       <div class="buttons">
         <button class="save" @click="save">salvar</button>
-        <button class="delete" @click="create">delete</button>
+        <button class="delete" @click="delete_user">delete</button>
         <button class="close" @click="$emit('close')">x</button>
       </div>
     </div>
 
-    <loader v-if="is_loading" />
+    <div class="loading" v-if="is_loading">
+      <loader />
+    </div>
     <CardAlert
       :title="title_alert"
       :body="body"
@@ -159,7 +161,44 @@ export default {
       }
     };
 
-    return { user_info, save, show_alert, is_loading, title_alert, body };
+    const delete_user = async () => {
+      is_loading.value = !is_loading.value;
+
+      await Users.delete(props.user._id)
+        .then((res) => {
+          title_alert.value = "Success!!!";
+          body.value = "Deleted successfully";
+          is_loading.value = !is_loading.value;
+          show_alert.value = !show_alert.value;
+
+          emit("update");
+
+          setTimeout(() => {
+            show_alert.value = !show_alert.value;
+
+            emit("close");
+          }, 800);
+
+          return res;
+        })
+        .catch((err) => {
+          title_alert.value = "Error";
+          body.value = "an error occurred, try again";
+          is_loading.value = !is_loading.value;
+          show_alert.value = !show_alert.value;
+          return err;
+        });
+    };
+
+    return {
+      user_info,
+      save,
+      show_alert,
+      is_loading,
+      title_alert,
+      body,
+      delete_user,
+    };
   },
 };
 </script>

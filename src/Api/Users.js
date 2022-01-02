@@ -12,4 +12,8 @@ export default {
   update(id, user) {
     return Api.put(`/users/${id}`, { user });
   },
+
+  delete(id) {
+    return Api.delete(`/users/${id}`);
+  },
 };
