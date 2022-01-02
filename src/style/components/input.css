@@ -1,0 +1,7 @@
+.input {
+  @apply mt-4;
+
+  & input {
+    @apply mt-2 border-b w-full text-lg border-gray-400 pb-1;
+  }
+}

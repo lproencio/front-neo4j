@@ -1,0 +1,17 @@
+.card-alert {
+  @apply absolute bg-gray-200 p-4 rounded-lg border-2 border-gray-400;
+  min-width: 60%;
+  max-width: 90%;
+
+  & h1 {
+    @apply text-xl font-semibold;
+  }
+
+  & p {
+    @apply text-lg mt-4 px-2;
+  }
+
+  & button {
+    @apply font-bold text-base mt-6;
+  }
+}

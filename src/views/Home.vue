@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <button class="button-register">
+    <button class="button-register" @click="show_add = !show_add">
       <img :src="require('@/assets/add.png')" alt="" />
       New Register
     </button>
@@ -26,7 +26,11 @@
       <loader />
     </div>
 
-    <add-edit />
+    <add-edit
+      v-if="show_add"
+      @close="show_add = !show_add"
+      @update="change_page(1)"
+    />
   </div>
 </template>
 
@@ -49,6 +53,7 @@ export default {
     const user_all = ref([]);
 
     const updated_search = ref(false);
+    const show_add = ref(false);
 
     const page = ref(1);
     const limit = ref(3);
@@ -74,7 +79,15 @@ export default {
       get_users();
     });
 
-    return { user_all, change_page, total, limit, page, updated_search };
+    return {
+      user_all,
+      change_page,
+      total,
+      limit,
+      page,
+      updated_search,
+      show_add,
+    };
   },
 };
 </script>

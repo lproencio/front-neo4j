@@ -1,0 +1,32 @@
+.add-edit {
+  @apply absolute top-0 bottom-0 left-0 right-0 p-2 flex items-center justify-center h-screen;
+  background: rgba(0, 0, 0, 0.5);
+
+  & .content {
+    @apply bg-white rounded-lg p-3;
+
+    & h1 {
+      @apply text-xl font-bold;
+    }
+
+    & .buttons {
+      @apply mt-6 flex justify-between;
+
+      & button {
+        @apply py-2 px-4 mr-4 rounded font-semibold;
+      }
+
+      & .save {
+        @apply bg-green-500;
+      }
+
+      & .delete {
+        @apply bg-red-500;
+      }
+
+      & .close {
+        @apply border-2 rounded-full;
+      }
+    }
+  }
+}

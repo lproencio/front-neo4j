@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="input">
     <label for="">{{ label }}</label>
     <input
       :value="value"
