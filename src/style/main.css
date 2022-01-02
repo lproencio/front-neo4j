@@ -15,7 +15,7 @@ button {
   min-height: 100vh;
 }
 
-@import "./nav.css";
 @import "./home.css";
 
 @import "./components/avatar.css";
+@import "./components/loader.css";

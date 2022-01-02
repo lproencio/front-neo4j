@@ -1,10 +1,32 @@
 .home {
+  @apply relative p-6;
+
+  & .button-register {
+    @apply text-white font-bold text-xl flex items-center;
+
+    & img {
+      @apply bg-white rounded-full p-1 mr-2;
+      width: 15px;
+    }
+  }
+
   & .table {
-    @apply p-6 w-full;
+    @apply w-full relative mt-4;
 
     & li {
       @apply my-4;
     }
+
+    & .updated {
+      @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  & .loading {
+    @apply absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center h-screen;
+
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   & .VuePagination {

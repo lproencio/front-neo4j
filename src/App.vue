@@ -1,12 +1,4 @@
 <template>
-  <div class="nav">
-    <router-link :class="{ selected: current_route == 'Home' }" to="/"
-      >Home</router-link
-    >
-    <router-link :class="{ selected: current_route == 'New' }" to="/new"
-      >New user</router-link
-    >
-  </div>
   <router-view />
 </template>
 
