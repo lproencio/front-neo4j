@@ -11,7 +11,7 @@
   }
 
   & .table {
-    @apply w-full relative mt-4;
+    @apply w-full relative mt-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-3;
 
     & li {
       @apply my-4;
@@ -30,9 +30,11 @@
   }
 
   & .VuePagination {
+    @apply md:flex justify-center;
+
     & nav {
       & ul {
-        @apply flex justify-between px-8;
+        @apply flex justify-between px-8 md:w-full md:px-0;
 
         & li {
           @apply bg-white rounded p-2;

@@ -58,7 +58,7 @@ export default {
     const show_add = ref(false);
 
     const page = ref(1);
-    const limit = ref(3);
+    const limit = ref(9);
     const total = ref(0);
 
     const get_users = async () => {

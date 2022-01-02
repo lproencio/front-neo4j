@@ -3,7 +3,7 @@
   background: rgba(0, 0, 0, 0.5);
 
   & .content {
-    @apply bg-white rounded-lg p-3;
+    @apply bg-white rounded-lg p-3 md:w-11/12 md:p-10 lg:p-20;
 
     & h1 {
       @apply text-xl font-bold;
